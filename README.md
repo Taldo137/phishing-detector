@@ -96,6 +96,7 @@ never stored. Earlier scans of the same sender also affect the score (the two hi
 ```mermaid
 flowchart LR
     user([Users]) -->|HTTP 80| alb[Load balancer]
+    addon([Gmail add-on]) -->|HTTPS| cf[CloudFront] -->|HTTP 80| alb
     subgraph vpc["VPC, 2 Availability Zones"]
         alb -->|8000| ec2["Auto Scaling Group<br/>2-3 x EC2 t3.micro<br/>Docker app"]
         ec2 -->|5432| rds[("RDS PostgreSQL<br/>private subnet")]
@@ -119,7 +120,8 @@ each session, without touching the data.
 | Security | Each layer only accepts traffic from the layer in front of it, and the database has no internet route. The DB password stays in Secrets Manager. Data is encrypted, and IMDSv2 is required. |
 | Reliability | The health check does not depend on the database, so a DB outage does not replace healthy instances. The app fails fast when the DB is down and works without the cache. |
 
-To save cost there is no NAT Gateway, the database is single-AZ and the site is HTTP only.
+To save cost there is no NAT Gateway and the database is single-AZ. HTTPS comes from CloudFront's
+default certificate, because there is no custom domain.
 Everything running costs about $0.11 per hour.
 
 ### Monitoring
@@ -166,10 +168,14 @@ terraform -chdir=infra/base destroy                                          # d
 The `aws` command lists what is left of the app stack. It should print `[]` (it can take a few
 minutes to update).
 
-## Limitations
+### Gmail add-on (bonus)
 
-- The rules only know the brands in the list, read English only, and do not analyze images.
-- The sender address is not authenticated (no SPF or DKIM check), so trust signals can be spoofed.
-- Lookalike domains are checked for the sender only, not for links.
-- The site is HTTP only, with no WAF and a single-AZ database.
-- Terraform state is local. Production would use S3 for state and a CI/CD pipeline.
+`gmail-addon/` is a Google Apps Script add-on. When you open an email, it shows a "Scan this email"
+button. Nothing leaves Gmail until you click it. It then sends the raw email to `/api/scan` and
+shows the risk level, score, verdict and top 3 findings. Apps Script only calls HTTPS URLs, so the
+app stack puts CloudFront in front of the load balancer (`terraform output https_url`).
+To install: create a project on script.google.com, paste `appsscript.json` and `Code.gs`, then
+Deploy > Test deployments > Install. The CloudFront URL changes on every app redeploy, so update
+`API_URL` and `urlFetchWhitelist` in Apps Script after each one.
+
+![Gmail add-on](docs/screenshots/gmail-addon.png)

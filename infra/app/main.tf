@@ -325,3 +325,51 @@ resource "aws_elasticache_replication_group" "cache" {
   at_rest_encryption_enabled = true
   apply_immediately          = true
 }
+
+# --- HTTPS for the Gmail add-on: CloudFront in front of the ALB --------------------------
+# Apps Script only calls https:// URLs. CloudFront gives HTTPS with its default certificate
+# (no domain needed) and forwards every request to the ALB over HTTP, without caching.
+
+data "aws_cloudfront_cache_policy" "disabled" {
+  name = "Managed-CachingDisabled"
+}
+
+data "aws_cloudfront_origin_request_policy" "all_viewer" {
+  name = "Managed-AllViewer"
+}
+
+resource "aws_cloudfront_distribution" "app" {
+  enabled     = true
+  comment     = "${local.name}: HTTPS in front of the ALB"
+  price_class = "PriceClass_100" # cheapest edge locations (Europe, North America)
+
+  origin {
+    origin_id   = "alb"
+    domain_name = aws_lb.app.dns_name
+    custom_origin_config {
+      http_port              = 80
+      https_port             = 443
+      origin_protocol_policy = "http-only" # the ALB has no certificate
+      origin_ssl_protocols   = ["TLSv1.2"]
+    }
+  }
+
+  default_cache_behavior {
+    target_origin_id         = "alb"
+    viewer_protocol_policy   = "redirect-to-https"
+    allowed_methods          = ["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"]
+    cached_methods           = ["GET", "HEAD"]
+    cache_policy_id          = data.aws_cloudfront_cache_policy.disabled.id
+    origin_request_policy_id = data.aws_cloudfront_origin_request_policy.all_viewer.id
+  }
+
+  restrictions {
+    geo_restriction {
+      restriction_type = "none"
+    }
+  }
+
+  viewer_certificate {
+    cloudfront_default_certificate = true # *.cloudfront.net
+  }
+}

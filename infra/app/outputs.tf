@@ -13,3 +13,7 @@ output "target_group_arn" {
 output "dashboard_url" {
   value = "https://${var.aws_region}.console.aws.amazon.com/cloudwatch/home?region=${var.aws_region}#dashboards/dashboard/${local.name}"
 }
+
+output "https_url" {
+  value = "https://${aws_cloudfront_distribution.app.domain_name}"
+}
