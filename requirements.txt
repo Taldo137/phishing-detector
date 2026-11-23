@@ -1,0 +1,13 @@
+fastapi==0.165.0
+uvicorn==0.54.0
+python-multipart==0.0.34
+pydantic==2.14.4
+SQLAlchemy==2.1.9
+psycopg[binary]==3.3.9
+redis==8.1.0
+beautifulsoup4==4.15.0
+tldextract==5.4.0
+
+# Tests only
+pytest==9.2.0
+httpx==0.28.1

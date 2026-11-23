@@ -1,0 +1,33 @@
+Return-Path: <billing@northwind-invoices.com>
+From: "Accounts Payable" <billing@northwind-invoices.com>
+Reply-To: payments@quick-settle.top
+To: finance@contoso.com
+Subject: Overdue invoice #2026-0457 - payment required
+Date: Sat, 21 Nov 2026 13:45:10 +0000
+Message-ID: <inv20260457.77@northwind-invoices.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="mixed_boundary_42"
+
+--mixed_boundary_42
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+Hello,
+
+Our records show that invoice #2026-0457 is overdue. Please review the
+attached invoice and arrange payment immediately to avoid late fees.
+
+Act now: reply to this email once the transfer is complete.
+
+Regards,
+Accounts Payable
+
+--mixed_boundary_42
+Content-Type: application/octet-stream; name="Invoice_2026.pdf.exe"
+Content-Disposition: attachment; filename="Invoice_2026.pdf.exe"
+Content-Transfer-Encoding: base64
+
+VGhpcyBpcyBhIGhhcm1sZXNzIHBsYWNlaG9sZGVyIHVzZWQgdG8gdGVzdCB0aGUgcGhpc2hpbmcg
+ZGV0ZWN0b3IuIEl0IGlzIE5PVCBhbiBleGVjdXRhYmxlLgo=
+
+--mixed_boundary_42--

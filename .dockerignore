@@ -1,0 +1,15 @@
+# Only the app goes into the image: no secrets, local data, tests, docs or infrastructure.
+.git/
+.venv/
+__pycache__/
+.pytest_cache/
+data/
+*.db
+.env
+*.md
+tests/
+docs/
+infra/
+scripts/
+private_notes/
+Dockerfile

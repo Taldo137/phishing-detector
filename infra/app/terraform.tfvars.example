@@ -1,0 +1,4 @@
+# Optional: copy to terraform.tfvars (gitignored). Usually image_tag is passed on the command line:
+#   terraform -chdir=infra/app apply -var image_tag=<git short SHA>
+image_tag = "abc1234"
+# enable_cache = false   # deploys in ~7 minutes instead of ~20

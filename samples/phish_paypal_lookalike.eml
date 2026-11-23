@@ -1,0 +1,44 @@
+Return-Path: <service@paypa1-secure.com>
+Authentication-Results: mx.example.com;
+       spf=fail (domain of service@paypa1-secure.com does not designate 203.0.113.77 as permitted sender) smtp.mailfrom=service@paypa1-secure.com;
+       dkim=none;
+       dmarc=fail (p=NONE) header.from=paypa1-secure.com
+From: "PayPal" <service@paypa1-secure.com>
+To: customer@example.com
+Subject: Your account has been suspended
+Date: Thu, 19 Nov 2026 08:14:22 +0000
+Message-ID: <20261119081422.4f2a@paypa1-secure.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="b1_paypal"
+
+--b1_paypal
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+Dear Customer,
+
+We detected unauthorized activity on your PayPal account. As a security
+precaution, your account will be suspended unless you verify your password
+within 24 hours.
+
+Verify now: http://paypal.com.verify-account.xyz/login
+
+Thank you,
+PayPal Security Team
+
+--b1_paypal
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body style="font-family: Arial, sans-serif;">
+    <p>Dear Customer,</p>
+    <p>We detected <b>unauthorized activity</b> on your PayPal account. As a
+    security precaution, your account will be suspended unless you verify your
+    password within 24 hours.</p>
+    <p><a href="http://paypal.com.verify-account.xyz/login">https://www.paypal.com</a></p>
+    <p>Thank you,<br>PayPal Security Team</p>
+  </body>
+</html>
+
+--b1_paypal--

@@ -1,0 +1,51 @@
+Return-Path: <bounce-receipts@paypal.co.il>
+Authentication-Results: mx.example.com;
+       spf=pass smtp.mailfrom=paypal.co.il;
+       dkim=pass header.d=paypal.co.il;
+       dmarc=pass header.from=paypal.co.il
+From: "PayPal" <service@paypal.co.il>
+To: buyer@example.com
+Subject: Receipt for your payment to Example Store Ltd
+Date: Thu, 19 Nov 2026 18:05:44 +0200
+Message-ID: <receipt.7HX2026AB1@paypal.co.il>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="pp_receipt"
+
+--pp_receipt
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+Hello Dana Levi,
+
+You sent a payment of 149.90 ILS to Example Store Ltd.
+
+Transaction ID: 7HX2026AB1234567C
+Transaction date: November 19, 2026
+
+View the transaction details in your account:
+https://www.paypal.com/myaccount/transactions/details/7HX2026AB1234567C
+
+Questions about this payment? Visit the Help Center:
+https://www.paypal.co.il/il/smarthelp/home
+
+PayPal
+
+--pp_receipt
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <body style="font-family: Arial, sans-serif;">
+    <p>Hello Dana Levi,</p>
+    <p>You sent a payment of <b>149.90 ILS</b> to Example Store Ltd.</p>
+    <table>
+      <tr><td>Transaction ID</td><td>7HX2026AB1234567C</td></tr>
+      <tr><td>Transaction date</td><td>November 19, 2026</td></tr>
+    </table>
+    <p><a href="https://www.paypal.com/myaccount/transactions/details/7HX2026AB1234567C">View transaction details</a></p>
+    <p>Questions about this payment? Visit the <a href="https://www.paypal.co.il/il/smarthelp/home">Help Center</a>.</p>
+    <p>PayPal</p>
+  </body>
+</html>
+
+--pp_receipt--

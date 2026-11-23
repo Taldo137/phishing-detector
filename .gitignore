@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+
+# Local data and secrets
+data/
+*.db
+.env
+
+# Private notes and assignment specs (kept locally, not published)
+private_notes/
+phishing_detector_spec.md
+SPEC.md
+SPEC_PART2.md
+
+# Terraform: state, provider cache, plans and real variable values
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+*.tfplan
+crash.log

@@ -1,0 +1,36 @@
+From: "Tax Authority - Personal Area" <noreply@taxes.gov.il>
+To: resident@example.co.il
+Subject: Reminder: annual income report - action required
+Date: Sun, 22 Nov 2026 09:00:00 +0200
+Message-ID: <reminder.2026.48213@taxes.gov.il>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="gov_reminder"
+
+--gov_reminder
+Content-Type: text/plain; charset="utf-8"
+
+Hello,
+
+This is a reminder that your annual income report for tax year 2025 has not been
+submitted yet. You can submit it in your personal area on the government website:
+https://www.gov.il/en/service/annual-income-report
+
+If you have already submitted the report, please ignore this message.
+We never ask for passwords or payment details by email.
+
+Tax Authority
+
+--gov_reminder
+Content-Type: text/html; charset="utf-8"
+
+<html><body>
+<p>Hello,</p>
+<p>This is a reminder that your annual income report for tax year 2025 has not been
+submitted yet. You can submit it in your personal area on the
+<a href="https://www.gov.il/en/service/annual-income-report">government website</a>.</p>
+<p>If you have already submitted the report, please ignore this message.
+We never ask for passwords or payment details by email.</p>
+<p>Tax Authority</p>
+</body></html>
+
+--gov_reminder--
